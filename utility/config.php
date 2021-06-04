@@ -15,88 +15,91 @@ function query($query)
   return $rows;
 }
 
-include 'derajat-keanggotaan.php';
-
-function get_derajat_keanggotaan($smartphones)
+function get_derajat_keanggotaan($films)
 {
+  include 'derajat-keanggotaan.php';
   $container = [];
 
-  foreach ($smartphones as $smartphone) {
-    $id = $smartphone["id_smartphone"];
-    $name = $smartphone['name'];
-    $screen_size = $smartphone['screen_size'];
-    $os = $smartphone['os'];
-    $ram = $smartphone['ram'];
-    $rom = $smartphone['rom'];
-    $battrey = $smartphone['battrey_capacity'];
+  foreach ($films as $film) {
+    $id = $film['id_film'];
+    $name = $film['name'];
+    $writer = $film['writer'];
+    $genre = $film['genre'];
+    $rating = $film['rating'];
+    $rilis = $film['rilis'];
+    $duration = $film['duration'];
 
-    // get nilai keanggotaan fuzzy untuk variabel RAM
-    $ram_kecil = ram_kecil($ram);
-    $ram_sedang = ram_sedang($ram);
-    $ram_besar = ram_besar($ram);
+    // get derajat keanggotaan fuzzy untuk variabel Rating
+    $r_jelek = r_jelek($rating);
+    $r_cukup_bagus = r_cukup_bagus($rating);
+    $r_bagus = r_bagus($rating);
+    $r_sangat_bagus = r_sangat_bagus($rating);
 
-    // get nilai keanggotaan fuzzy untuk variabel ROM
-    $rom_kecil = rom_kecil($rom);
-    $rom_sedang = rom_sedang($rom);
-    $rom_besar = rom_besar($rom);
 
-    // get nilai keanggotaan fuzzy untuk variabel Battrey
-    $battrey_kecil = battrey_kecil($battrey);
-    $battrey_sedang = battrey_sedang($battrey);
-    $battrey_besar = battrey_besar($battrey);
+    // get derajat keanggotaan fuzzy untuk variabel Rilis
+    $rl_baru = rl_baru($film['telah rilis']);
+    $rl_cukup_lama = rl_cukup_lama($film['telah rilis']);
+    $rl_lama = rl_lama($film['telah rilis']);
+
+    // get derajat keanggotaan fuzzy untuk variabel Battrey
+    $d_pendek = d_pendek($duration);
+    $d_normal = d_normal($duration);
+    $d_panjang = d_panjang($duration);
 
     $data = [
       'id' => $id,
       'name' => $name,
-      'screen_size' => $screen_size,
-      'os' => $os,
-      'ram' => $ram,
-      'rom' => $rom,
-      'battrey' => $battrey,
-      'ram_kecil' => $ram_kecil,
-      'ram_sedang' => $ram_sedang,
-      'ram_besar' => $ram_besar,
-      'rom_kecil' => $rom_kecil,
-      'rom_sedang' => $rom_sedang,
-      'rom_besar' => $rom_besar,
-      'battrey_kecil' => $battrey_kecil,
-      'battrey_sedang' => $battrey_sedang,
-      'battrey_besar' => $battrey_besar
+      'writer' => $writer,
+      'genre' => $genre,
+      'rating' => $rating,
+      'rilis' => $rilis,
+      'duration' => $duration,
+      'r_jelek' => $r_jelek,
+      'r_cukup_bagus' => $r_cukup_bagus,
+      'r_bagus' => $r_bagus,
+      'r_sangat_bagus' => $r_sangat_bagus,
+      'rl_baru' => $rl_baru,
+      'rl_cukup_lama' => $rl_cukup_lama,
+      'rl_lama' => $rl_lama,
+      'd_pendek' => $d_pendek,
+      'd_normal' => $d_normal,
+      'd_panjang' => $d_panjang
     ];
     $container[] = $data;
   }
   return $container;
 }
 
-function get_data_crisp($smartphones)
+function get_data_crisp($films)
 {
+  include 'himpunan-crisp.php';
   $container = [];
 
-  foreach ($smartphones as $smartphone) {
-    $id = $smartphone['id'];
-    $name = $smartphone['name'];
-    $screen_size = $smartphone['screen_size'];
-    $os = $smartphone['os'];
-    $ram = $smartphone['ram'];
-    $rom = $smartphone['rom'];
-    $battrey = $smartphone['battrey'];
+  foreach ($films as $film) {
+    $id = $film['id'];
+    $name = $film['name'];
+    $writer = $film['writer'];
+    $genre = $film['genre'];
+    $rating = $film['rating'];
+    $rilis = $film['rilis'];
+    $duration = $film['duration'];
 
-    // get nilai crisp untuk variabel RAM, ROM, dan battrey
-    $c_ram = crisp($smartphone['ram_kecil'], $smartphone['ram_sedang'], $smartphone['ram_besar']);
-    $c_rom = crisp($smartphone['rom_kecil'], $smartphone['rom_sedang'], $smartphone['rom_besar']);
-    $c_battrey = crisp($smartphone['battrey_kecil'], $smartphone['battrey_sedang'], $smartphone['battrey_besar']);
+    // get nilai crisp untuk variabel Rating, Rilis, dan Durasi
+    $c_rating = c_rating($film['r_jelek'], $film['r_cukup_bagus'], $film['r_bagus'], $film['r_sangat_bagus']);
+    $c_rilis = c_rilis($film['rl_baru'], $film['rl_cukup_lama'], $film['rl_lama']);
+    $c_duration = c_duration($film['d_pendek'], $film['d_normal'], $film['d_panjang']);
 
     $data = [
       'id' => $id,
       'name' => $name,
-      'screen_size' => $screen_size,
-      'os' => $os,
-      'ram' => $ram,
-      'rom' => $rom,
-      'battrey' => $battrey,
-      'c_ram' => $c_ram,
-      'c_rom' => $c_rom,
-      'c_battrey' => $c_battrey
+      'writer' => $writer,
+      'genre' => $genre,
+      'rating' => $rating,
+      'rilis' => $rilis,
+      'duration' => $duration,
+      'c_rating' => $c_rating,
+      'c_rilis' => $c_rilis,
+      'c_duration' => $c_duration
     ];
     $container[] = $data;
   }
@@ -105,30 +108,30 @@ function get_data_crisp($smartphones)
 
 function filter_data_crisp($data, $params_query)
 {
-  $ram = $params_query[0];
-  $rom = $params_query[1];
-  $battrey = $params_query[2];
+  $rating = $params_query[0];
+  $rilis = $params_query[1];
+  $duration = $params_query[2];
 
   // var_dump($data);
   // die;
 
-  $filtered = array_filter($data, function ($var) use ($ram, $rom, $battrey) {
-    if ($ram && $rom && $battrey) {
-      // echo "$ram <br>";
-      // echo $var['ram'] . "<br>";
-      return ($var['c_ram'] == $ram && $var['c_rom'] == $rom && $var['c_battrey'] == $battrey);
-    } elseif ($ram && $rom) {
-      return ($var['c_ram'] == $ram && $var['c_rom'] == $rom);
-    } elseif ($ram && $battrey) {
-      return ($var['c_ram'] == $ram && $var['c_battrey'] == $battrey);
-    } elseif ($rom && $battrey) {
-      return ($var['c_rom'] == $rom && $var['c_battrey'] == $battrey);
-    } elseif ($ram) {
-      return ($var['c_ram'] == $ram);
-    } elseif ($rom) {
-      return ($var['c_rom'] == $rom);
-    } elseif ($battrey) {
-      return ($var['c_battrey'] == $battrey);
+  $filtered = array_filter($data, function ($var) use ($rating, $rilis, $duration) {
+    if ($rating && $rilis && $duration) {
+      // echo "$rating <br>";
+      // echo $var['rating'] . "<br>";
+      return ($var['c_rating'] == $rating && $var['c_rilis'] == $rilis && $var['c_duration'] == $duration);
+    } elseif ($rating && $rilis) {
+      return ($var['c_rating'] == $rating && $var['c_rilis'] == $rilis);
+    } elseif ($rating && $duration) {
+      return ($var['c_rating'] == $rating && $var['c_duration'] == $duration);
+    } elseif ($rilis && $duration) {
+      return ($var['c_rilis'] == $rilis && $var['c_duration'] == $duration);
+    } elseif ($rating) {
+      return ($var['c_rating'] == $rating);
+    } elseif ($rilis) {
+      return ($var['c_rilis'] == $rilis);
+    } elseif ($duration) {
+      return ($var['c_duration'] == $duration);
     }
   });
 

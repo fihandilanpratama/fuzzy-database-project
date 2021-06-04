@@ -1,86 +1,86 @@
 <?php
 
-// fungsi keanggotaan untuk variabel RAM
-function ram_kecil($x)
+// fungsi keanggotaan untuk variabel Rating
+function r_jelek($x)
 {
-  if ($x <= 2) $derajat_keanggotaan = 1;
-  elseif ($x >= 2 && $x <= 4) $derajat_keanggotaan = (4 - $x) / (4 - 2);
-  elseif ($x >= 4) $derajat_keanggotaan = 0;
-  return round($derajat_keanggotaan, 3);
+  if ($x <= 5) $derajat_keanggotaan = 1;
+  elseif ($x >= 5 && $x <= 6) $derajat_keanggotaan = (6 - $x) / (6 - 5);
+  elseif ($x >= 6) $derajat_keanggotaan = 0;
+  return round($derajat_keanggotaan, 2);
 }
 
-function ram_sedang($x)
+function r_cukup_bagus($x)
 {
-  if ($x <= 3 || $x >= 6) $derajat_keanggotaan = 0;
-  elseif ($x >= 3 && $x <= 4) $derajat_keanggotaan = ($x - 3) / (4 - 3);
-  elseif ($x >= 4 && $x <= 6) $derajat_keanggotaan = (6 - $x) / (6 - 4);
-  return round($derajat_keanggotaan, 3);
+  if ($x <= 5.5 || $x >= 7) $derajat_keanggotaan = 0;
+  elseif ($x >= 5.5 && $x <= 6) $derajat_keanggotaan = ($x - 5.5) / (6 - 5.5);
+  elseif ($x >= 6 && $x <= 6.5) $derajat_keanggotaan = 1;
+  elseif ($x >= 6.5 && $x <= 7) $derajat_keanggotaan = (7 - $x) / (7 - 6.5);
+  return round($derajat_keanggotaan, 2);
 }
 
-function ram_besar($x)
+function r_bagus($x)
 {
-  if ($x <= 4) $derajat_keanggotaan = 0;
-  elseif ($x >= 4 && $x <= 8) $derajat_keanggotaan = ($x - 4) / (8 - 4);
-  elseif ($x >= 8) $derajat_keanggotaan = 1;
-  return round($derajat_keanggotaan, 3);
+  if ($x <= 6.5 || $x >= 8) $derajat_keanggotaan = 0;
+  elseif ($x >= 6.5 && $x <= 7) $derajat_keanggotaan = ($x - 6.5) / (7 - 6.5);
+  elseif ($x >= 7 && $x <= 7.5) $derajat_keanggotaan = 1;
+  elseif ($x >= 6.5 && $x <= 7) $derajat_keanggotaan = (7 - $x) / (7 - 6.5);
+  return round($derajat_keanggotaan, 2);
 }
 
-// fungsi keanggotaan untuk variabel ROM
-function rom_kecil($x)
+function r_sangat_bagus($x)
 {
-  if ($x <= 16) $derajat_keanggotaan = 1;
-  elseif ($x >= 16 && $x <= 32) $derajat_keanggotaan = (32 - $x) / (32 - 16);
-  elseif ($x >= 32) $derajat_keanggotaan = 0;
-  return round($derajat_keanggotaan, 3);
+  if ($x >= 8) $derajat_keanggotaan = 1;
+  elseif ($x >= 7.5 && $x <= 8) $derajat_keanggotaan = ($x - 7.5) / (8 - 7.5);
+  elseif ($x <= 7.5) $derajat_keanggotaan = 0;
+  return round($derajat_keanggotaan, 2);
 }
 
-function rom_sedang($x)
+// fungsi keanggotaan untuk variabel Rilis
+function rl_baru($x)
 {
-  if ($x <= 16 || $x >= 128) $derajat_keanggotaan = 0;
-  elseif ($x >= 16 && $x <= 64) $derajat_keanggotaan = ($x - 16) / (64 - 16);
-  elseif ($x >= 64 && $x <= 128) $derajat_keanggotaan = (128 - $x) / (128 - 64);
-  return round($derajat_keanggotaan, 3);
+  if ($x <= 1) $derajat_keanggotaan = 1;
+  elseif ($x >= 1 && $x <= 5) $derajat_keanggotaan = (5 - $x) / (5 - 1);
+  elseif ($x >= 5) $derajat_keanggotaan = 0;
+  return round($derajat_keanggotaan, 2);
 }
 
-function rom_besar($x)
+function rl_cukup_lama($x)
 {
-  if ($x <= 64) $derajat_keanggotaan = 0;
-  elseif ($x >= 64 && $x <= 128) $derajat_keanggotaan = ($x - 64) / (128 - 64);
-  elseif ($x >= 128) $derajat_keanggotaan = 1;
-  return round($derajat_keanggotaan, 3);
+  if ($x <= 2 || $x >= 10) $derajat_keanggotaan = 0;
+  elseif ($x >= 2 && $x <= 7) $derajat_keanggotaan = ($x - 2) / (7 - 2);
+  elseif ($x >= 7 && $x <= 10) $derajat_keanggotaan = (10 - $x) / (10 - 7);
+  return round($derajat_keanggotaan, 2);
 }
 
-// fungsi keanggotaan untuk variabel Battrey
-function battrey_kecil($x)
+function rl_lama($x)
 {
-  if ($x <= 3000) $derajat_keanggotaan = 1;
-  elseif ($x >= 3000 && $x <= 4000) $derajat_keanggotaan = (4000 - $x) / (4000 - 3000);
-  elseif ($x >= 32) $derajat_keanggotaan = 0;
-  return round($derajat_keanggotaan, 3);
+  if ($x <= 6) $derajat_keanggotaan = 0;
+  elseif ($x >= 6 && $x <= 10) $derajat_keanggotaan = ($x - 6) / (10 - 6);
+  elseif ($x >= 10) $derajat_keanggotaan = 1;
+  return round($derajat_keanggotaan, 2);
 }
 
-function battrey_sedang($x)
+// fungsi keanggotaan untuk variabel Durasi
+function d_pendek($x)
 {
-  if ($x <= 3500 || $x >= 6000) $derajat_keanggotaan = 0;
-  elseif ($x >= 3500 && $x <= 5000) $derajat_keanggotaan = ($x - 3500) / (5000 - 3500);
-  elseif ($x >= 5000 && $x <= 6000) $derajat_keanggotaan = (6000 - $x) / (6000 - 5000);
-  return round($derajat_keanggotaan, 3);
+  if ($x <= 20) $derajat_keanggotaan = 1;
+  elseif ($x >= 20 && $x <= 70) $derajat_keanggotaan = (70 - $x) / (70 - 20);
+  elseif ($x >= 70) $derajat_keanggotaan = 0;
+  return round($derajat_keanggotaan, 2);
 }
 
-function battrey_besar($x)
+function d_normal($x)
 {
-  if ($x <= 5000) $derajat_keanggotaan = 0;
-  elseif ($x >= 5000 && $x <= 6000) $derajat_keanggotaan = ($x - 5000) / (6000 - 5000);
-  elseif ($x >= 6000) $derajat_keanggotaan = 1;
-  return round($derajat_keanggotaan, 3);
+  if ($x <= 20 || $x >= 190) $derajat_keanggotaan = 0;
+  elseif ($x >= 20 && $x <= 105) $derajat_keanggotaan = ($x - 20) / (105 - 20);
+  elseif ($x >= 105 && $x <= 190) $derajat_keanggotaan = (190 - $x) / (190 - 105);
+  return round($derajat_keanggotaan, 2);
 }
 
-
-// fungsi untuk mencari himpunan crisp dari derajat keanggotaan
-function crisp($kecil, $sedang, $besar)
+function d_panjang($x)
 {
-  $result = max([$kecil, $sedang, $besar]);
-  if ($result == $kecil) return 'kecil';
-  elseif ($result == $sedang) return 'sedang';
-  elseif ($result == $besar) return 'besar';
+  if ($x <= 105) $derajat_keanggotaan = 0;
+  elseif ($x >= 105 && $x <= 190) $derajat_keanggotaan = ($x - 105) / (190 - 105);
+  elseif ($x >= 190) $derajat_keanggotaan = 1;
+  return round($derajat_keanggotaan, 2);
 }

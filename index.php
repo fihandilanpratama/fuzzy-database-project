@@ -24,7 +24,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="smartphone.php">Data Smartphones</a>
+            <a class="nav-link active" aria-current="page" href="film.php">Data Films</a>
           </li>
         </ul>
       </div>
@@ -32,7 +32,7 @@
   </nav>
 
   <div class="container text-center" style="margin-top: 200px;">
-    <h1>Sistem Pencarian <i>Smartphones</i> Berdasarkan<br> <i>Query Fuzzy</i></h1>
+    <h1>Sistem Pencarian <i>Films</i> Berdasarkan<br> <i>Query Fuzzy</i></h1>
   </div>
 
 
